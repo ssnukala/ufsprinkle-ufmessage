@@ -1,0 +1,77 @@
+$table->string('home_phone', 20)->nullable();
+$table->string('emergency_last_name', 100)->nullable();
+$table->string('emergency_first_name', 100)->nullable();
+$table->string('emergency_home_phone', 20)->nullable();
+$table->string('emergency_mobile_phone', 20)->nullable();
+$table->string('emergency_email', 500)->nullable();
+$table->char('member_type', 1)->default('G');
+$table->char('waiver_sign', 1)->nullable()->default('N');
+$table->string('waiver_sign_name', 50)->nullable();
+$table->dateTime('waiver_sign_date')->nullable();
+
+
+{
+    "location" : {
+        "validators" : {
+            "length" : {
+                "label" : "LOCATION",
+                "min" : 1,
+                "max" : 255,
+                "message" : "VALIDATE.LENGTH_RANGE"
+            }
+        },
+        "form": {
+            "type": "text",
+            "label": "LOCATION",
+            "icon": "fa-globe"
+        }
+    },
+    "gender" : {
+        "validators" : {},
+        "form": {
+            "type": "select",
+            "label": "GENDER",
+            "icon": "fa-transgender",
+            "options" : {
+                "1" : "GENDER.MALE",
+                "2" : "GENDER.FEMALE",
+                "3" : "GENDER.NEUTRAL"
+            }
+        }
+    },
+    "home_phone" : {
+        "validators" : {
+            "length" : {
+                "max" : 10,
+                "message" : "VALIDATE.MAX_LENGTH"
+            },
+            "required" : {
+                "message" : "VALIDATE.REQUIRED"
+            },
+            "phoneUS": true
+        },
+        "form" : {
+            "type" : "text",
+            "id" : "home_phone",
+            "placeholder" : "Home phone"
+        }
+    },
+    "mobile_phone" : {
+        "validators" : {
+            "length" : {
+                "max" : 10,
+                "message" : "VALIDATE.MAX_LENGTH"
+            },
+            "required" : {
+                "message" : "VALIDATE.REQUIRED"
+            },
+            "phoneUS": true
+        },
+        "form" : {
+            "type" : "text",
+            "id" : "mobile_phone",
+            "placeholder" : "Mobile phone"
+        }
+    },
+
+}

@@ -1,0 +1,69 @@
+{
+    "gender" : {
+        "validators" : {},
+        "form": {
+            "type": "select",
+            "label": "GENDER",
+            "icon": "fa-transgender",
+            "options" : {
+                "1" : "GENDER.MALE",
+                "2" : "GENDER.FEMALE",
+                "3" : "GENDER.NEUTRAL"
+            }
+        }
+    },
+    "home_phone" : {
+        "validators" : {
+            "length" : {
+                "max" : 10,
+                "message" : "VALIDATE.MAX_LENGTH"
+            },
+            "required" : {
+                "message" : "VALIDATE.REQUIRED"
+            },
+            "phoneUS": {
+                "message" : "Enter Valid US Phone"
+            }
+        },
+        "form" : {
+            "type" : "text",
+            "id" : "home_phone",
+            "placeholder" : "Home phone"
+        }
+    },
+    "mobile_phone" : {
+        "validators" : {
+            "length" : {
+                "max" : 10,
+                "message" : "VALIDATE.MAX_LENGTH"
+            },
+            "required" : {
+                "message" : "Mobile Number Required"
+            },
+            "phoneUS": {
+                "message" : "Enter Valid US Phone"
+            }
+        },
+        "form" : {
+            "type" : "text",
+            "id" : "mobile_phone",
+            "placeholder" : "Mobile phone"
+        }
+    },
+    "emergency_first_name" : {
+        "validators" : {
+            "length" : {
+                "label" : "Emergency First Name",
+                "min" : 1,
+                "max" : 255,
+                "message" : "VALIDATE.LENGTH_RANGE"
+            }
+        },
+        "form": {
+            "type": "text",
+            "label": "Emergency First Name",
+            "icon": "fa-globe"
+        }
+    }
+
+}

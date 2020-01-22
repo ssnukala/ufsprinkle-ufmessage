@@ -34,8 +34,9 @@ class UfMessageTable extends Migration
             $this->schema->create('uf_message', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('user_id')->unsigned()->nullable();
-                $table->char('type', 1)->nullable();
                 $table->dateTime('message_date')->nullable();
+                $table->dateTime('end_date')->nullable();
+                $table->char('type', 1)->nullable();
                 $table->string('event', 20)->nullable();
                 $table->string('subject', 256)->nullable();
                 $table->string('from', 500)->nullable();

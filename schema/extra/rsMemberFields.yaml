@@ -1,0 +1,82 @@
+---
+home_phone:
+  validators:
+    required:
+      label:                "Home Phone"
+      domain:               server
+      message:              VALIDATE.REQUIRED
+    phoneUS:
+      message:          "US Home phone number"
+    length:
+      label:                "Home Phone"
+      min:                  1
+      max:                  10
+      domain:               server
+      message:              VALIDATE.LENGTH_RANGE
+mobile_phone:
+  validators:
+    required:
+      label:                "Mobile Phone"
+      domain:               server
+      message:              VALIDATE.REQUIRED
+    phoneUS:
+      message:          "US Mobile phone number"
+    length:
+      label:                "Mobile Phone"
+      min:                  1
+      max:                  10
+      domain:               server
+      message:              VALIDATE.LENGTH_RANGE
+emergency_first_name:
+  validators:
+    length:
+      label:                "&FIRST_NAME"
+      min:                  1
+      max:                  20
+      message:              VALIDATE.LENGTH_RANGE
+  required:
+    label:                  "&FIRST_NAME"
+    message:                VALIDATE.REQUIRED
+  transformations:
+  - trim
+emergency_last_name:
+  validators:
+    length:
+      label:                "&LAST_NAME"
+      min:                  1
+      max:                  30
+      message:              VALIDATE.LENGTH_RANGE
+  transformations:
+  - trim
+emergency_email:
+  validators:
+    required:
+      label:                "&EMAIL"
+      message:              VALIDATE.REQUIRED
+    length:
+      label:                "&EMAIL"
+      min:                  1
+      max:                  150
+      message:              VALIDATE.LENGTH_RANGE
+    email:
+      message:              VALIDATE.INVALID_EMAIL
+emergency_mobile_phone:
+  validators:
+    required:
+      label:                "Mobile Phone"
+      domain:               server
+      message:              VALIDATE.REQUIRED
+    phoneUS:
+      message:          "US Mobile phone number"
+    length:
+      label:                "Mobile Phone"
+      min:                  1
+      max:                  10
+      domain:               server
+      message:              VALIDATE.LENGTH_RANGE
+member_type:
+  validators:
+    required:
+      label:                "Member Type"
+      domain:               server
+      message:              VALIDATE.REQUIRED

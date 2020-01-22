@@ -1,0 +1,124 @@
+---
+id:
+  form:
+    type: hidden
+    id: name
+    label: "ID"
+    placeholder: "ID"
+event:
+  validators:
+    required:
+      label: "&UFMESSAGE.C.EVENT"
+      message: VALIDATE.REQUIRED
+    length:
+      label: "&UFMESSAGE.C.EVENT"
+      min: 1
+      max: 255
+      message: VALIDATE.LENGTH_RANGE
+  transformations:
+    - trim
+message_date:
+  validators:
+    required:
+      label: "&UFMESSAGE.C.MESSAGE_DATE"
+      message: VALIDATE.REQUIRED
+  transformations:
+    - trim
+visible:
+  validators:
+    member_of:
+      values:
+        - "Y"
+        - "N"
+        - "O"
+    required:
+      message: VALIDATE.REQUIRED
+  form:
+    type: select
+    label: UFMESSAGE.C.VISIBLE
+    options:
+      "Y": Yes
+      "N": No
+      "O": Once
+notification:
+  validators:
+    member_of:
+      values:
+        - "Y"
+        - "N"
+        - "O"
+    required:
+      message: VALIDATE.REQUIRED
+  form:
+    type: select
+    label: UFMESSAGE.C.NOTIFICATION
+    options:
+      "Y": Yes
+      "N": No
+      "O": Once
+subject:
+  validators:
+    required:
+      label: "&UFMESSAGE.C.SUBJECT"
+      message: VALIDATE.REQUIRED
+    length:
+      label: "&UFMESSAGE.C.SUBJECT"
+      min: 1
+      max: 255
+      message: VALIDATE.LENGTH_RANGE
+  transformations:
+    - trim
+from:
+  form:
+    id: from
+    type: hidden
+to:
+  validators:
+    required:
+      label: "&UFMESSAGE.C.TO"
+      message: VALIDATE.REQUIRED
+    length:
+      label: "&UFMESSAGE.C.TO"
+      min: 1
+      max: 500
+      message: VALIDATE.LENGTH_RANGE
+cc:
+  validators:
+    length:
+      label: "&UFMESSAGE.C.CC"
+      min: 0
+      max: 500
+      message: VALIDATE.LENGTH_RANGE
+bcc:
+  validators:
+    length:
+      label: "&UFMESSAGE.C.BCC"
+      min: 0
+      max: 500
+      message: VALIDATE.LENGTH_RANGE
+end_date:
+  validators:
+    required:
+      label: "&UFMESSAGE.C.END_DATE"
+      message: VALIDATE.REQUIRED
+  transformations:
+    - trim
+body:
+  validators:
+    length:
+      label: "&UFMESSAGE.C.BODY"
+      min: 1
+      max: 1000
+      message: VALIDATE.LENGTH_RANGE
+    required:
+      message: VALIDATE.REQUIRED
+  transformations:
+    - trim
+  form:
+    type: textarea
+    id: body
+    label: "UFMESSAGE.C.BODY"
+user_id:
+  form:
+    type: hidden
+    id: user_id
