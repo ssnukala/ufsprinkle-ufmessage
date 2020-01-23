@@ -6,16 +6,14 @@
     <p>Dear {{user.first_name}},
     </p>
     <p>हरि: ॐ</p>
-    <p>
-    You are receiving this email because you registered with {{site.title}} ({{site.uri.public}}).
-    </p>
     {% block ufmessage_body %}
+        <p>
+        You are receiving this email because you registered with {{site.title}} ({{site.uri.public}}).
+        </p>
         <p>Enter Mail Text here</p>
     {% endblock %}
     <p>
-
     हरि: ॐ तत्सत्
-    
     </p>
     {% block ufmessage_footer %}
     The {{site.title}} Team

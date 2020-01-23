@@ -22,6 +22,8 @@ use UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController;
 //class CatalogController extends CRUDMultiRowController
 class UfMessageCRUDController extends CRUDController
 {
+    protected $crud_name = 'UF Message';
+
     protected $model_name = 'message';
     /**
      * The child classes will set the options here
