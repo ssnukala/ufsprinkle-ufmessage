@@ -21,7 +21,7 @@ class UfMessageDTController extends DatatablesController
 	public function setupDatatable($properties = [])
 	{
 		$dtprop = [
-			'htmlid' => 'center_dt_1',
+			'htmlid' => 'ufmessage_dt_1',
 			'schema' => 'schema://datatable/ufmessage.yaml',
 			"ajax_url" => "/api/ufmessage/dt",
 		];
@@ -29,6 +29,7 @@ class UfMessageDTController extends DatatablesController
 		$dtprop['filters'] = [];
 		$dtprop['formatters'] = [
 			"tables/formatters/ufmessage_body.html.twig",
+			"tables/formatters/ufmessage_edit.html.twig",
 		];
 		$dtprop['name'] = 'ufmessage_dt';
 		$dtprop['title'] = 'UFMESSAGE.LIST_TITLE';

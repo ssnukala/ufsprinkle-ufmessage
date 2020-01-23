@@ -1,17 +1,13 @@
 {% import "forms/macros/crud-edit.html.twig" as crudEdit %}
+{% import "forms/macros/edit-pencil.html.twig" as pencil %}
 {% extends "formatters/dt_crud_formatter.html.twig" %}
-{% set forfield = 'notes' %}
+{% set forfield = 'body' %}
 {% block format_body %}
-    <div class='row'>
-        <div class='col-md-12'>
-            <p>
-                <strong>row.first_name row.last_name (row.id:row.user_id-row.family_id:row.order_id |row.enroll_date | row.payment_status)</strong>
-                <br>
-                row.notes
-                <br>
-                Paid : row.amount_paid, Balance Due : row.balance_due
-                {{ crudEdit.generate(dtid,crudformdiv,'Update','genericDTCRUDSuccess') }}
-            </p>
-        </div>
+    <div class='uf_message_format'>
+        <p>Status : row.status, Notification: row.notification {{pencil.add('ufmessage','status','/api/ufmessage/r/{id}/status','genericFieldEditSuccess')}}</p>
+        row.body
+        <p>
+            {{ crudEdit.generate(dtid,crudformdiv,'Update','genericDTCRUDSuccess') }}
+        </p>
     </div>
 {% endblock %}    

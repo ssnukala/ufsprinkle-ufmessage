@@ -1,0 +1,42 @@
+{% extends "formatters/dt_crud_formatter.html.twig" %}
+{% set forfield = 'ufmessage' %}
+
+{% block format_body %}
+
+    <div class="rs-editform">
+        <form method='post' class="rs-editform form-inline crud-fieldform">
+            {% include "forms/csrf.html.twig" %}
+            <div class='editfield'>
+            </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-md rs-editform-ok btn-success">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+            <button type="reset" class="btn btn-md rs-editform-cancel btn-warning"
+                onClick='genericEditCancel(this);return false;'>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+        </div>
+        </form>
+    </div>
+
+    <div class='rs-editfield' data-forfield='status'>
+        <div class="form-group">
+            <label class="form-label" for=''>Status:</label>
+            <select class="form-control input-base-elem  " name='value[status]' >
+                <option value='A'>Active</option>
+                <option value='I'>Inactive</option>
+                <option value='R'>Archive</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for=''>Notify:</label>
+            <select class="form-control input-base-elem" name='value[notification]' >
+                <option value='A'>Active</option>
+                <option value='I'>Inactive</option>
+                <option value='O'>Once</option>
+            </select>
+        </div>
+    </div>
+
+{% endblock %}

@@ -95,10 +95,10 @@ bcc:
       min: 0
       max: 500
       message: VALIDATE.LENGTH_RANGE
-end_date:
+expire_date:
   validators:
     required:
-      label: "&UFMESSAGE.C.END_DATE"
+      label: "&UFMESSAGE.C.EXPIRE_DATE"
       message: VALIDATE.REQUIRED
   transformations:
     - trim
