@@ -16,7 +16,8 @@ namespace UserFrosting\Sprinkle\UfMessage\Controller;
 
 //Import PHPMailer classes into the global namespace
 use UserFrosting\Sprinkle\Core\Facades\Debug;
-use UserFrosting\Sprinkle\Core\Mail\MailMessage;
+//use UserFrosting\Sprinkle\Core\Mail\MailMessage;
+use UserFrosting\Sprinkle\UfMessage\Controller\Mail\UfmTwigMailMessage;
 use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;
 
 /**
@@ -59,14 +60,14 @@ class UfMessenger
      * @param MailMessage $message
      *
      */
-    public function createMessage($event, MailMessage $message)
+    public function createMessage(UfmTwigMailMessage $mailobj)
     {
         $message = [];
         //$message['from'] = $this->getMailName($message->getFromName(), $message->getFromEmail());
-        $message['from'] = $message->getFromEmail();
+        $message['from'] = $mailobj->getFromEmail();
         $toemail = [];
         // Add all email recipients, as well as their CCs and BCCs
-        foreach ($message->getRecipients() as $recipient) {
+        foreach ($mailobj->getRecipients() as $recipient) {
             //            $toemail['to'][] = $this->getMailName($recipient->getName(), $recipient->getEmail());
             $toemail['to'][] = $recipient->getEmail();
 
@@ -86,17 +87,20 @@ class UfMessenger
             }
         }
 
-        $message['event'] = $event; //email;
+        $message['event'] = $mailobj->getParam('event'); //event name;
+        $message['user_id'] = $mailobj->getParam('user_id'); //user id
         $message['type'] = 'E'; //email;
         $message['visible'] = 'Y'; //email;
         $message['notification'] = 'Y'; //email;
         $message['to'] = implode(',', $toemail['to']);
         $message['cc'] = implode(',', $toemail['cc']);
         $message['bcc'] = implode(',', $toemail['bcc']);
-        $message['subject']  = $message->renderSubject();
-        $message['body']  = $message->renderBody();
+        $message['subject']  = $mailobj->renderSubject();
+        $message['body']  = $mailobj->renderBody();
         $message['message_date']  = date('Y-m-d H:i:s');
-
+        $expdays = $this->config['expire'] ? $this->config['expire'] : 100;
+        $message['expire_date']  = date('Y-m-d H:i:s', strtotime("+$expdays days"));
+        return $message;
         //return $this->phpMailer;
     }
 
@@ -111,17 +115,16 @@ class UfMessenger
      *
      * @throws phpmailerException The message could not be sent.
      */
-    public function send($event, MailMessage $message, $clearRecipients = true)
+    public function send(UfmTwigMailMessage $message, $clearRecipients = true)
     {
-        Debug::debug("Line 203 Gmailer initiating message");
-        $this->createMessage($event, $message);
-        // Try to send the mail.  Will throw an exception on failure.
-        $this->phpMailer->send();
-        Debug::debug("Line 207 Gmailer After Send Command");
+        Debug::debug("Line 203 UFMessenger initiating message");
+        $mesgdata = $this->createMessage($message);
 
-        // Clear recipients from the PHPMailer object for this iteration,
-        // so that we can use the same object for other emails.
-        $this->phpMailer->clearAllRecipients();
+        $ufmesg = new UfMessage($mesgdata);
+        $ufmesg->save();
+
+        //$this->phpMailer->send();
+        Debug::debug("Line 207 UFMessenger After Send Command");
 
         // Clear out the MailMessage's internal recipient list
         if ($clearRecipients) {

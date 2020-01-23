@@ -38,7 +38,7 @@ class UfMessage extends Model
      * @var string[]
      */
     protected $fillable = [
-        'user_id', 'event', 'type', 'message_date', 'subject', 'from', 'to', 'cc', 'bcc', 'body',
+        'user_id', 'event', 'type', 'message_date', 'expire_date', 'subject', 'from', 'to', 'cc', 'bcc', 'body',
         'attachment', 'visible', 'notification', 'status'
     ];
 
