@@ -1,0 +1,23 @@
+---
+visible:
+  validators:
+    member_of:
+      values:
+        - "Y"
+        - "N"
+        - "O"
+notification:
+  validators:
+    member_of:
+      values:
+        - "Y"
+        - "N"
+        - "O"
+expire_date:
+status:
+  validators:
+    member_of:
+      values:
+        - "A"
+        - "D"
+        - "R"

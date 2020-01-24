@@ -11,7 +11,8 @@ $app->group('/api/ufmessage', function () {
 
     $this->post('', $rController . ':create');
     $this->put('/r/{message_id}', $rController . ':update');
-    $this->put('/r/{message_id}/{field}', $rController . ':updateField');
+    //$this->put('/r/{message_id}/{field}', $rController . ':updateField');
+    $this->post('/r/{message_id}/{field}', $rController . ':updateField');
 
     $cDtController = 'UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController';
     $this->post('/dt', $cDtController . ':getList');

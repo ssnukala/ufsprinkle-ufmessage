@@ -1,0 +1,18 @@
+{% block ufmessageCard %}
+<li class="dropdown ufmessage-card">
+    {% block ufmessageCard_nav %}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Messages {% if uf_messages|length > 0 %}<span class="ufmessage-count badge">{{uf_messages|length}}</span>{% endif %}
+      <i class="fas fa-chevron-down"></i>
+    </a>
+    {% endblock %}
+    <ul class="dropdown-menu">
+      {% block ufmessageCard_info %}
+      <!-- User image -->
+      <li class='uf_message_row' style='height:250px; overflow-y:scroll;'>
+        {% include('pages/partials/message-table.html.twig')%}
+      </li>
+      {% endblock %}
+    </ul>
+</li>
+{% endblock %}

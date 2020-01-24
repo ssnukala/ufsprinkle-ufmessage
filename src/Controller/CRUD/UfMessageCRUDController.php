@@ -64,10 +64,9 @@ class UfMessageCRUDController extends CRUDController
             'mappedClass' => 'uf_' . $lcmodel,
             'role' => 'cu_update_uf_' . $lcmodel,
             'data_schema' => [
-                ['schema' => "schema://requests/$lcmodel/create.yaml", 'prefix' => $lcmodel],
-                ['schema' => "schema://forms/status.yaml", 'prefix' => $lcmodel],
+                ['schema' => "schema://requests/$lcmodel/create.yaml", 'prefix' => $lcmodel]
             ],
-            'field_schema' => "schema://requests/$lcmodel/edit-info.yaml",
+            'field_schema' => "schema://requests/$lcmodel/field-edit.yaml",
             'success' => $ucmodel . '.UPDATE_SUCCESSFUL',
             'failure' => $ucmodel . '.UPDATE_FAILED',
             'logType' => 'uf_update_' . $lcmodel,

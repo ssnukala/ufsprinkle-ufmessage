@@ -117,14 +117,65 @@ class UfMessenger
      */
     public function send(UfmTwigMailMessage $message, $clearRecipients = true)
     {
-        Debug::debug("Line 203 UFMessenger initiating message");
+        //Debug::debug("Line 203 UFMessenger initiating message");
         $mesgdata = $this->createMessage($message);
 
         $ufmesg = new UfMessage($mesgdata);
         $ufmesg->save();
 
         //$this->phpMailer->send();
-        Debug::debug("Line 207 UFMessenger After Send Command");
+        //Debug::debug("Line 207 UFMessenger After Send Command");
+
+        // Clear out the MailMessage's internal recipient list
+        if ($clearRecipients) {
+            $message->clearRecipients();
+        }
+    }
+
+    /**
+     * Send a MailMessage message, sending a separate email to each recipient.
+     *
+     * If the message object supports message templates, this will render the template with the corresponding placeholder values for each recipient.
+     *
+     * @param MailMessage $message
+     * @param bool        $clearRecipients Set to true to clear the list of recipients in the message after calling send().  This helps avoid accidentally sending a message multiple times.
+     *
+     * @throws phpmailerException The message could not be sent.
+     */
+    public function sendDistinct(UfmTwigMailMessage $message, $clearRecipients = true)
+    {
+        // To be implemented
+        $this->phpMailer->From = $message->getFromEmail();
+        $this->phpMailer->FromName = $message->getFromName();
+        $this->phpMailer->addReplyTo($message->getReplyEmail(), $message->getReplyName());
+
+        // Loop through email recipients, sending customized content to each one
+        foreach ($message->getRecipients() as $recipient) {
+            $this->phpMailer->addAddress($recipient->getEmail(), $recipient->getName());
+
+            // Add any CCs and BCCs
+            if ($recipient->getCCs()) {
+                foreach ($recipient->getCCs() as $cc) {
+                    $this->phpMailer->addCC($cc['email'], $cc['name']);
+                }
+            }
+
+            if ($recipient->getBCCs()) {
+                foreach ($recipient->getBCCs() as $bcc) {
+                    $this->phpMailer->addBCC($bcc['email'], $bcc['name']);
+                }
+            }
+
+            $this->phpMailer->Subject = $message->renderSubject($recipient->getParams());
+            $this->phpMailer->Body = $message->renderBody($recipient->getParams());
+
+            // Try to send the mail.  Will throw an exception on failure.
+            $this->phpMailer->send();
+
+            // Clear recipients from the PHPMailer object for this iteration,
+            // so that we can send a separate email to the next recipient.
+            $this->phpMailer->clearAllRecipients();
+        }
 
         // Clear out the MailMessage's internal recipient list
         if ($clearRecipients) {

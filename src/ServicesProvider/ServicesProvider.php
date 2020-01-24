@@ -16,6 +16,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Interop\Container\ContainerInterface;
 use UserFrosting\Sprinkle\UfMessage\Controller\UfMessenger;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
+use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;
+use UserFrosting\Sprinkle\UfMessage\Twig\UfMessageExtension;
 
 /**
  * UserFrosting APIMail services provider.
@@ -51,6 +53,40 @@ class ServicesProvider
             $classMapper->setClassMapping('uf_message', 'UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage');
             $classMapper->setClassMapping('uf_message_sprunje', 'UserFrosting\Sprinkle\UfMessage\Sprunje\UfMessageSprunje');
             return $classMapper;
+        });
+
+        $container['ufMessages'] = function ($c) {
+            try {
+                $currentUser = $c->currentUser;
+                $ufmessages = UfMessage::select('id', 'body', 'message_date')
+                    ->where('user_id', $currentUser->id)
+                    ->where('status', 'A')->orderBy('message_date', 'DESC')->limit(5)->get();
+                return $ufmessages->toArray();
+            } catch (\Exception $e) {
+                return ['uf_messages' => []];
+            }
+        };
+
+        /*
+         * Extends the 'view' service with the UfMessageExtension for Twig.
+         *
+         * Adds messages to the View
+         *
+         * @return \Slim\Views\Twig
+         */
+        $container->extend('view', function ($view, $c) {
+            $twig = $view->getEnvironment();
+            $extension = new UfMessageExtension($c);
+            $twig->addExtension($extension);
+
+            try {
+                /** @var \UserFrosting\Sprinkle\Account\Authenticate\Authenticator $authenticator */
+                $ufmessages = $c->ufMessages;
+            } catch (\Exception $e) {
+                return $view;
+            }
+
+            return $view;
         });
     }
 }

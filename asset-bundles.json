@@ -1,0 +1,28 @@
+{
+    "bundle": {
+        "js/ufmessageutil": {
+            "scripts": [
+                "ufmessage/js/pages/ufmessage-utilities.js"
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "scripts": "plain"
+                    }
+                }
+            }
+        },
+        "css/ufmessage": {
+            "styles": [
+                "ufmessage/css/ufmessage.css"
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "styles": "plain"
+                    }
+                }
+            }
+        }
+    }
+}

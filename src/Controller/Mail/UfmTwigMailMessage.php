@@ -33,7 +33,7 @@ class UfmTwigMailMessage extends TwigMailMessage
      */
     public function getParam($param = '')
     {
-        Debug::debug("Line 36 getting param $param from ", $this->params['ufmessage']);
+        //Debug::debug("Line 36 getting param $param from ", $this->params['ufmessage']);
         if ($param != '') {
             return $this->params['ufmessage'][$param];
         } else {

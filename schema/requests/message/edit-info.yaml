@@ -122,3 +122,7 @@ user_id:
   form:
     type: hidden
     id: user_id
+status:
+  form:
+    type: hidden
+    id: status

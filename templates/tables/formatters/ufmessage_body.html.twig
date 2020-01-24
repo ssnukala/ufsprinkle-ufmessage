@@ -4,10 +4,9 @@
 {% set forfield = 'body' %}
 {% block format_body %}
     <div class='uf_message_format'>
-        <p>Status : row.status, Notification: row.notification {{pencil.add('ufmessage','status','/api/ufmessage/r/{id}/status','genericFieldEditSuccess')}}</p>
+        <strong>Status : </strong>row.status, <strong>Notification: </strong>row.notification 
+        {{pencil.add('ufmessage','status','/api/ufmessage/r/{id}/status','genericFieldEditSuccess')}}
         row.body
-        <p>
-            {{ crudEdit.generate(dtid,crudformdiv,'Update','genericDTCRUDSuccess') }}
-        </p>
+        {{ crudEdit.generate(dtid,crudformdiv,'Update','genericDTCRUDSuccess') }}
     </div>
 {% endblock %}    

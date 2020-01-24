@@ -1,0 +1,19 @@
+<table cellpadding="0" cellspacing="0" style="width:100%!important;" 
+    class="table table-striped table-condensed table-responsive table-bordered no-footer" 
+    border="0" id="ufmessage_menu_1" >
+  <thead><tr role="row"><th class="uf_message_col" >Message</th></tr></thead>
+  <tbody>
+    {% for msgno, ufmessage in uf_messages %}
+    <tr class="uf-row uf_message_row" role="row"><td class="dt_column uf_message_col">
+        <div class="uf_message_menu">
+          <div>
+            <span class="label label-default">{{ufmessage.message_date|date('m/d H:i')}}</span>
+            <span onClick='dismissUfMessage(this,{{ufmessage.id}})'>dismiss</a>
+          </div>
+          {{ufmessage.body|raw}}
+        </div>
+    </td></tr>
+    {% endfor %}
+  </tbody>
+  <tfoot></tfoot>
+</table>      

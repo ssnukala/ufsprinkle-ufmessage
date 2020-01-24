@@ -121,3 +121,20 @@ user_id:
   form:
     type: hidden
     id: user_id
+status:
+  validators:
+    member_of:
+      values:
+        - "A"
+        - "D"
+        - "R"
+    required:
+      message: VALIDATE.STATUS
+  form:
+    type: select
+    label: UFMESSAGE.C.STATUS
+    options:
+      "": --Select--
+      "A": Active
+      "D": Disabled
+      "R": Archive
