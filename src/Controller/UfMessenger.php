@@ -65,7 +65,7 @@ class UfMessenger
         $message = [];
         //$message['from'] = $this->getMailName($message->getFromName(), $message->getFromEmail());
         $message['from'] = $mailobj->getFromEmail();
-        $toemail = [];
+        $toemail = ["to" => [], 'cc' => [], 'bcc' => []];
         // Add all email recipients, as well as their CCs and BCCs
         foreach ($mailobj->getRecipients() as $recipient) {
             //            $toemail['to'][] = $this->getMailName($recipient->getName(), $recipient->getEmail());
@@ -86,10 +86,19 @@ class UfMessenger
                 }
             }
         }
-
-        $message['event'] = $mailobj->getParam('event'); //event name;
-        $message['user_id'] = $mailobj->getParam('user_id'); //user id
-        $message['type'] = 'E'; //email;
+        $message['event'] = $mailobj->getUfParam('event'); //event name;
+        if ($message['event'] === false) {
+            $message['event'] = 'General';
+        }
+        $message['user_id'] = $mailobj->getUfParam('user_id'); //user id
+        if ($message['user_id'] === false) {
+            //$currentUser = $this->ci->currentUser;
+            $message['user_id'] = $this->ci->currentUser->id;
+        }
+        $message['type'] = $mailobj->getUfParam('type');
+        if ($message['type'] === false) {
+            $message['type'] = 'GEN';
+        }
         $message['visible'] = 'Y'; //email;
         $message['notification'] = 'Y'; //email;
         $message['to'] = implode(',', $toemail['to']);
@@ -97,6 +106,13 @@ class UfMessenger
         $message['bcc'] = implode(',', $toemail['bcc']);
         $message['subject']  = $mailobj->renderSubject();
         $message['body']  = $mailobj->renderBody();
+        // this will send the ufmessage array as context for the mail
+        // plan to use this to trigger actions based on responses to the message from the user        
+        $context = $mailobj->getMessageContext();
+
+        if ($context !== false) {
+            $message['context']  = $context;
+        }
         $message['message_date']  = date('Y-m-d H:i:s');
         $expdays = $this->config['expire'] ? $this->config['expire'] : 100;
         $message['expire_date']  = date('Y-m-d H:i:s', strtotime("+$expdays days"));

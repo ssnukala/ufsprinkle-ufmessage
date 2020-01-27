@@ -31,13 +31,39 @@ class UfmTwigMailMessage extends TwigMailMessage
     /**
      * {@inheritdoc}
      */
-    public function getParam($param = '')
+    public function getParam($param = 'none')
     {
         //Debug::debug("Line 36 getting param $param from ", $this->params['ufmessage']);
-        if ($param != '') {
-            return $this->params['ufmessage'][$param];
+        if (isset($this->params[$param])) {
+            $retval = $this->params[$param];
         } else {
-            return $this->params['ufmessage'];
+            $retval = false;
         }
+        return $retval;
+    }
+
+    public function getMessageContext()
+    {
+        $retval = $this->getParam('context');
+        if ($retval == false) {
+            // either the value does not exist or it was set to false so we can just use ufmessage
+            $retval = $this->getParam('ufmessage');
+        }
+        return $retval;
+    }
+
+    public function getUfParam($param = 'none')
+    {
+        //Debug::debug("Line 36 getting param $param from ", $this->params['ufmessage']);
+        if (isset($this->params['ufmessage'])) {
+            if ($param != 'none') {
+                $retval = $this->params['ufmessage'][$param];
+            } else {
+                $retval = $this->params['ufmessage'];
+            }
+        } else {
+            $retval = false;
+        }
+        return $retval;
     }
 }

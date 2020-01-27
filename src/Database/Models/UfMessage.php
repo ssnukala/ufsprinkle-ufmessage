@@ -32,14 +32,16 @@ class UfMessage extends Model
      */
     protected $table = 'uf_message';
 
+    protected $casts = ['context' => 'array'];
+
     /**
      * Fields that should be mass-assignable when creating a new User.
      *
      * @var string[]
      */
     protected $fillable = [
-        'user_id', 'event', 'type', 'message_date', 'expire_date', 'subject', 'from', 'to', 'cc', 'bcc', 'body',
-        'attachment', 'visible', 'notification', 'status'
+        'user_id', 'event', 'type', 'message_date', 'expire_date', 'subject', 'from',
+        'to', 'cc', 'bcc', 'body', 'context', 'attachment', 'visible', 'notification', 'status'
     ];
 
     /**

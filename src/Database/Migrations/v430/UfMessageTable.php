@@ -36,7 +36,7 @@ class UfMessageTable extends Migration
                 $table->integer('user_id')->unsigned()->nullable();
                 $table->dateTime('message_date')->nullable();
                 $table->dateTime('expire_date')->nullable();
-                $table->char('type', 1)->nullable();
+                $table->strong('type', 20)->nullable();
                 $table->string('event', 256)->nullable();
                 $table->string('subject', 256)->nullable();
                 $table->string('from', 500)->nullable();
@@ -44,6 +44,7 @@ class UfMessageTable extends Migration
                 $table->string('cc', 1000)->nullable();
                 $table->string('bcc', 500)->nullable();
                 $table->text('body')->nullable();
+                $table->text('context')->nullable();
                 $table->string('attachment', 255)->nullable();
                 $table->char('visible', 1)->default('Y');
                 $table->char('notification', 1)->default('N');
