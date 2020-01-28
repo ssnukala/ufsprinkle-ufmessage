@@ -95,6 +95,7 @@ class UfMessenger
             //$currentUser = $this->ci->currentUser;
             $message['user_id'] = $this->ci->currentUser->id;
         }
+        $message['created_by'] = $message['user_id'];
         $message['type'] = $mailobj->getUfParam('type');
         if ($message['type'] === false) {
             $message['type'] = 'GEN';

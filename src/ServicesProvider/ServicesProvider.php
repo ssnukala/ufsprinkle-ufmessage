@@ -18,6 +18,7 @@ use UserFrosting\Sprinkle\UfMessage\Controller\UfMessenger;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;
 use UserFrosting\Sprinkle\UfMessage\Twig\UfMessageExtension;
+use UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController;
 
 /**
  * UserFrosting APIMail services provider.
@@ -61,9 +62,14 @@ class ServicesProvider
                 $ufmessages = UfMessage::select('id', 'body', 'message_date')
                     ->where('user_id', $currentUser->id)
                     ->where('status', 'A')->orderBy('message_date', 'DESC')->limit(5)->get();
-                return $ufmessages->toArray();
+
+                $m_dtctrl = new UfMessageDTController($c);
+                $m_dtctrl->setControlBarOptions();
+                $m_dtarr = $m_dtctrl->getDatatableArray();
+                $retarr = ['data' => $ufmessages->toArray(), 'ufmdt' => $m_dtarr];
+                return $retarr;
             } catch (\Exception $e) {
-                return ['uf_messages' => []];
+                return ['data' => [], 'ufmdt' => []];
             }
         };
 

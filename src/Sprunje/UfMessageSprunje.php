@@ -25,7 +25,7 @@ class UfMessageSprunje extends DatatablesSprunje
     protected $name = 'uf_message';
 
     protected $sortable = [
-        'id', 'message_date'
+        'id', 'message_date', 'body'
     ];
 
     protected $filterable = [
@@ -59,6 +59,11 @@ class UfMessageSprunje extends DatatablesSprunje
                     ->orLike('body', $value);
             }
         });
+        return $this;
+    }
+    protected function sortBody($query, $direction)
+    {
+        $query->orderBy('message_date', $direction);
         return $this;
     }
 

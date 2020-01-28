@@ -58,9 +58,37 @@ class UfMessageDTController extends DatatablesController
 		parent::setupDatatable($newproperties);
 	}
 
+	public function setControlBarOptions()
+	{
+		$ctlprop = [
+			'schema' => 'schema://datatable/ufmessage-control.yaml',
+			"ajax_url" => "/api/ufmessage/dt2",
+			'newrow_template' => '',
+			'tableclass' => 'table-condensed'
+		];
+		$ctlprop['formatters'] = [
+			"tables/formatters/ufmessage_body-control.html.twig"
+		];
+
+		$this->setupDatatable($ctlprop);
+	}
+
 	public function getList($request, $response, $args)
 	{
 		$this->setSprunje($request, $response, $args);
+
+		$this->sprunje->extendQuery(function ($query) use ($args) {
+			if (isset($args['user_id'])) {
+				if ($args['user_id'] == 'current') {
+					$currentUser = $this->ci->currentUser;
+					$args['user_id'] = $currentUser->id;
+				}
+				$query->where('user_id', $args['user_id']);
+				Debug::debug("Line 126 args user id  args 'user_id' - " . $args['user_id'], $args);
+			}
+			return $query;
+		});
+
 		return $this->sprunje->toResponse($response);
 	}
 }

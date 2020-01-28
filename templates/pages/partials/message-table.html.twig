@@ -3,12 +3,12 @@
     border="0" id="ufmessage_menu_1" >
   <thead><tr role="row"><th class="uf_message_col" >Message</th></tr></thead>
   <tbody>
-    {% for msgno, ufmessage in uf_messages %}
+    {% for msgno, ufmessage in uf_messages.data %}
     <tr class="uf-row uf_message_row" role="row"><td class="dt_column uf_message_col">
         <div class="uf_message_menu">
           <div>
             <span class="label label-default">{{ufmessage.message_date|date('m/d H:i')}}</span>
-            <span onClick='dismissUfMessage(this,{{ufmessage.id}})'>dismiss</a>
+            <span onClick='dismissUfMessage(this,{{ufmessage.id}})'>dismiss</span>
           </div>
           {{ufmessage.body|raw}}
         </div>

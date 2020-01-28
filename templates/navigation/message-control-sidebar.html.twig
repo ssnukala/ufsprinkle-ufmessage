@@ -13,8 +13,16 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-message-tab">
+          {% set page_params = {} %}
+          {% include 'components/datatable-crud.html.twig' with {
+              'cruddt' : uf_messages.ufmdt,
+              'page_params':page_params
+              }
+          %}
+{#}
         <h3 class="control-sidebar-heading">Messages</h3>
             {% include 'pages/partials/message-table.html.twig'%}
+#}            
       </div>
       <div class="tab-pane" id="control-sidebar-contact-tab">
         <form method="post">

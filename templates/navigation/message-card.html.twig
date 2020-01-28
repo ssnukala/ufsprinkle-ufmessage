@@ -2,7 +2,7 @@
 <li class="dropdown ufmessage-card">
     {% block ufmessageCard_nav %}
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Messages {% if uf_messages|length > 0 %}<span class="ufmessage-count badge">{{uf_messages|length}}</span>{% endif %}
+        Messages {% if uf_messages.data|length > 0 %}<span class="ufmessage-count badge">{{uf_messages.data|length}}</span>{% endif %}
       <i class="fas fa-chevron-down"></i>
     </a>
     {% endblock %}

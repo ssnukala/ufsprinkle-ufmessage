@@ -1,0 +1,78 @@
+body:
+  name: body
+  title: UFMESSAGE.C.BODY
+  orderable: true
+  searchable: true
+  visible: true
+message_date:
+  name: message_date
+  title: UFMESSAGE.C.MESSAGE_DATE
+  orderable: false
+  searchable: false
+  visible: false
+id:
+  name: id
+  title: UFMESSAGE.C.ID
+  orderable: false
+  searchable: false
+  visible: false
+user_id:
+  name: user_id
+  title: UFMESSAGE.C.USER_ID
+  orderable: false
+  searchable: false
+  visible: false
+event:
+  name: event
+  title: UFMESSAGE.C.EVENT
+  orderable: false
+  searchable: true
+  visible: false
+from:
+  name: from
+  title: UFMESSAGE.C.FROM
+  orderable: false
+  searchable: false
+  visible: false
+to:
+  name: to
+  title: UFMESSAGE.C.TO
+  orderable: false
+  searchable: true
+  visible: false
+cc:
+  name: cc
+  title: UFMESSAGE.C.CC
+  orderable: false
+  searchable: false
+  visible: false
+bcc:
+  name: bcc
+  title: UFMESSAGE.C.BCC
+  orderable: false
+  searchable: false
+  visible: false
+notification:
+  name: notification
+  title: UFMESSAGE.C.NOTIFICATION
+  orderable: false
+  searchable: false
+  visible: false
+visible:
+  name: visible
+  title: UFMESSAGE.C.VISIBLE
+  orderable: false
+  searchable: false
+  visible: false
+type:
+  name: type
+  title: UFMESSAGE.C.TYPE
+  orderable: false
+  searchable: false
+  visible: false
+status:
+  name: status
+  title: UFMESSAGE.C.STATUS
+  orderable: false
+  searchable: false
+  visible: false
