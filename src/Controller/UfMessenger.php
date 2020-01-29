@@ -100,6 +100,10 @@ class UfMessenger
         if ($message['type'] === false) {
             $message['type'] = 'GEN';
         }
+        $message['status'] = $mailobj->getUfParam('status');
+        if ($message['status'] === false) {
+            $message['status'] = 'A';
+        }
         $message['visible'] = 'Y'; //email;
         $message['notification'] = 'Y'; //email;
         $message['to'] = implode(',', $toemail['to']);

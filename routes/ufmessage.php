@@ -16,7 +16,10 @@ $app->group('/api/ufmessage', function () {
 
     $cDtController = 'UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController';
     $this->post('/dt', $cDtController . ':getList');
-    $this->post('/dt/{message_id}', $cDtController . ':getList');
+    $this->post('/dt/{user_id}', $cDtController . ':getList');
+
+    //$this->post('/dt/f/{filter_by}/{filter_val}', $cDtController . ':getList');
+
     $this->post('/dt2', $cDtController . ':getList')->setArgument('user_id', 'current');
     $this->post('/dt2/{user_id}', $cDtController . ':getList');
     $this->post('/dt2/{user_id}/{message_id}', $cDtController . ':getList');

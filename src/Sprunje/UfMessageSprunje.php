@@ -29,7 +29,7 @@ class UfMessageSprunje extends DatatablesSprunje
     ];
 
     protected $filterable = [
-        'to', 'body'
+        'to', 'body', 'status', 'type'
     ];
 
     protected $excludeForAll = [];
@@ -61,6 +61,33 @@ class UfMessageSprunje extends DatatablesSprunje
         });
         return $this;
     }
+    /**
+     * 
+     *     "message": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status1' in 
+     * 'where clause' (SQL: select count(*) as aggregate from `uf_message` 
+     * where `user_id` = 1 and ((`status1` = A)) and ((`to` LIKE %%) or (`body` LIKE %%) 
+     * or ((`status1` = ))) and `uf_message`.`deleted_at` is null)",
+
+     * 
+     * Undocumented function
+     *
+     * @param [type] $query
+     * @param [type] $value
+     * @return void
+     */
+    protected function filterStatus($query, $value)
+    {
+        // Split value on separator for OR queries
+        $values = explode($this->orSeparator, $value);
+        $query->where(function ($query) use ($values) {
+            foreach ($values as $value) {
+                $query->orWhere('status', $value);
+            }
+        });
+        return $this;
+    }
+
+
     protected function sortBody($query, $direction)
     {
         $query->orderBy('message_date', $direction);

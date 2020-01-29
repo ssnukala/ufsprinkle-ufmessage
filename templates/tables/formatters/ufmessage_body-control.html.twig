@@ -5,6 +5,12 @@
 {% block format_body %}
     <div class='uf_message_format'>
         row.body
-        <span class="label label-warning pull-right dismiss-ufmessage" onClick='dismissUfMessage(this,row.id)'>dismiss</span>
+        <span class='field_format' data-forfield='rowdata'>
+            <span class="rs-conditional" data-forfield='rowdata.status'>
+                <span class='rs-option' data-forfield='rowdata.status' data-value='A'>
+                    <span class="label label-warning pull-right dismiss-ufmessage" onClick='dismissUfMessage(this,row.id)'>dismiss</span>
+                </span>
+            </span>
+        </span>
     </div>
 {% endblock %}    

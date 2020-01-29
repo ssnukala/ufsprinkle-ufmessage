@@ -1,10 +1,12 @@
 {% block ufmessageCard %}
 <li class="dropdown ufmessage-card">
     {% block ufmessageCard_nav %}
+    {#}
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         Messages {% if uf_messages.data|length > 0 %}<span class="ufmessage-count badge">{{uf_messages.data|length}}</span>{% endif %}
       <i class="fas fa-chevron-down"></i>
     </a>
+    #}
     {% endblock %}
     <ul class="dropdown-menu">
       {% block ufmessageCard_info %}
