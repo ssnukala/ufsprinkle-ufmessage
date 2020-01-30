@@ -47,7 +47,7 @@ class UfMessageCRUDController extends CRUDController
             'form' => [
                 "id" => $lcmodel . '_create',
                 "source" => $lcmodel,
-                "field_prefix" => 'ufm',
+                "field_prefix" => 'msgufm',
                 "type" => 'form',
                 "class" => 'hide-label',
                 "title" => $ucmodel . ".ADD_NEW_" . $ucmodel,
@@ -73,7 +73,7 @@ class UfMessageCRUDController extends CRUDController
             'form' => [
                 "id" => $lcmodel . '_update',
                 "type" => 'form',
-                "field_prefix" => 'upd',
+                "field_prefix" => 'msgupd',
                 "source" => $lcmodel,
                 "class" => 'hide-label',
                 "title" => $ucmodel . ".UPDATE_" . $ucmodel,

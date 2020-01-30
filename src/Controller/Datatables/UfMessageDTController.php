@@ -53,7 +53,6 @@ class UfMessageDTController extends DatatablesController
 		$dtprop['filters']['url'] = $dtprop['ajax_url'];
 		$dtprop['filters']['title'] = 'Filters';
 		$dtprop['filters']['fields'][] = $filter2;
-		//$dtprop['preDrawCallback'] = 'genericPreDrawFilter'; 
 		// pre draw filter is removed, implemented logic to get filter data in the datatable_utl.js just 
 		// before the Ajax call.
 
