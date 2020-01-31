@@ -63,12 +63,6 @@ class UfMessageSprunje extends DatatablesSprunje
     }
     /**
      * 
-     *     "message": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status1' in 
-     * 'where clause' (SQL: select count(*) as aggregate from `uf_message` 
-     * where `user_id` = 1 and ((`status1` = A)) and ((`to` LIKE %%) or (`body` LIKE %%) 
-     * or ((`status1` = ))) and `uf_message`.`deleted_at` is null)",
-
-     * 
      * Undocumented function
      *
      * @param [type] $query

@@ -13,10 +13,10 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-message-tab">
-          {% set page_params = {} %}
+          {% set crud_params = {} %}
           {% include 'components/datatable-crud.html.twig' with {
               'cruddt' : uf_messages.ufmdt,
-              'page_params':page_params
+              'crud_params':crud_params
               }
           %}
 {#}
