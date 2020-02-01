@@ -79,7 +79,7 @@ class UfMessageCRUDController extends CRUDController
                 "title" => $ucmodel . ".UPDATE_" . $ucmodel,
                 "submit_button" => "Submit",
                 "method" => "PUT",
-                "action" => "/api/ufmessage/r/row.id",
+                "action" => "/api/ufmessage/r/{row.id}",
                 "fields" => '',
                 "fieldsPerRow" => 2,
                 "validators" => '',
