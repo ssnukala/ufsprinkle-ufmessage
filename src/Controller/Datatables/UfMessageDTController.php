@@ -49,9 +49,6 @@ class UfMessageDTController extends DatatablesController
 		$filter2['value'] = 'A';
 		$filter2['data-source'] = 'row.status';
 		$filter2['class'] = "form-control js-select2 input-sm";
-
-		$dtprop['filters']['url'] = $dtprop['ajax_url'];
-		$dtprop['filters']['title'] = 'Filters';
 		$dtprop['filters']['fields'][] = $filter2;
 		// pre draw filter is removed, implemented logic to get filter data in the datatable_utl.js just 
 		// before the Ajax call.
@@ -96,6 +93,9 @@ class UfMessageDTController extends DatatablesController
 		$dtprop['filters']['fields'] = [];
 		$dtprop = $this->addStatusFilter($dtprop);
 		$dtprop = $this->addTypeFilter($dtprop);
+		$dtprop['filters']['url'] = $dtprop['ajax_url'];
+		$dtprop['filters']['title'] = 'Filters';
+
 		//Debug::debug("Line 77 dtprops UfMessageDTController ", $dtprop);
 		$dtprop['createdRow'] = 'genericCreatedRow';
 
