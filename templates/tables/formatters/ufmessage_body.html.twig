@@ -5,7 +5,7 @@
 {% block format_body %}
     <div class='uf_message_format'>
         <strong>Status : </strong>{row.status}, <strong>Notification: </strong>{row.notification}
-        {{pencil.add('ufmessage','status','/api/ufmessage/r/{row.id}/status','genericFieldEditSuccess')}}
+        {{pencil.add2('ufmessage','status','/api/ufmessage/r/{row.id}/status')}}
         {row.body}
         {{ crudEdit.generate(dtid,crudformdiv,'Update','genericDTCRUDSuccess') }}
     </div>
