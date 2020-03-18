@@ -37,7 +37,7 @@ class UfMessageSprunje extends DatatablesSprunje
     /**
      * {@inheritDoc}
      */
-    protected function baseQuery()
+    protected function baseQueryDelete()
     {
         return $this->classMapper->createInstance('uf_message')->newQuery();
     }
@@ -86,10 +86,5 @@ class UfMessageSprunje extends DatatablesSprunje
     {
         $query->orderBy('message_date', $direction);
         return $this;
-    }
-
-    protected function applyTransformations($collection)
-    {
-        return $collection;
     }
 }

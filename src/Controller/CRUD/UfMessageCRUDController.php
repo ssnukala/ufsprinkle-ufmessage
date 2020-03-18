@@ -102,6 +102,13 @@ class UfMessageCRUDController extends CRUDController
 
     }
 
+    public function getCRUDPageParams()
+    {
+        $params = [];
+        $params['hasgeocode'] = 'N';
+        return $params;
+    }
+
     /**
      * Renders the Listing Datatable Object 
      *
@@ -109,9 +116,7 @@ class UfMessageCRUDController extends CRUDController
     public function setupListData()
     {
         $dtcontroller = new UfMessageDTController($this->ci);
-        $params['hasgeocode'] = 'N';
-        //        $params['assets'] = ['js' => ['js/pages/regsevakutil']];
-        $return = ['dtcontroller' => $dtcontroller, 'params' => $params];
+        $return = ['dtcontroller' => $dtcontroller, 'params' => $this->getCRUDPageParams()];
         return $return;
     }
 
