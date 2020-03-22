@@ -19,6 +19,7 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 //use UserFrosting\Sprinkle\Core\Mail\MailMessage;
 use UserFrosting\Sprinkle\UfMessage\Controller\Mail\UfmTwigMailMessage;
 use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;
+use UserFrosting\Sprinkle\Core\Mail\EmailRecipient;
 
 /**
  * UfMessenger Class.

@@ -1,0 +1,14 @@
+{% extends "mail/ufmessage.html.twig" %}
+{% block ufmessage_body %}
+    {% set mesgdata = params.ufmessage %}
+    <p><strong>System Alert Message</strong></p>
+    <p>Message Text<br>
+        {{mesgdata.message_text}}
+    </p>
+    {% if mesgdata.data is iterable %}
+        {{ mesgdata.data | json_encode(constant('JSON_PRETTY_PRINT')) | raw }}
+    {% endif %}
+{% endblock %}
+{% block ufmessage_signature %}
+    The {{site.title}} Admin Team
+{% endblock %}

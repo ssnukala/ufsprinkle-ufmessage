@@ -17,11 +17,11 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 class UfMessageDTController extends DatatablesController
 {
     protected $sprunje_name = 'uf_message_sprunje';
-
+    protected $exportable = '*';
 
     public function addTypeFilter($dtprop)
     {
-        $types = ['PAY||ENR' => 'Payment', 'CRUD' => 'Update', 'OTH' => 'Other'];
+        $types = ['PAY||ENR' => 'Payment', 'ALR' => 'Alerts', 'CRUD' => 'Update', 'OTH' => 'Other'];
 
         $filter2['options'] = $types;
         $filter2['type'] = 'select';
@@ -95,6 +95,8 @@ class UfMessageDTController extends DatatablesController
         $dtprop = $this->addTypeFilter($dtprop);
         $dtprop['filters']['url'] = $dtprop['ajax_url'];
         $dtprop['filters']['title'] = 'Filters';
+
+        $dtprop['export_rows'] = 'page';
 
         //Debug::debug("Line 77 dtprops UfMessageDTController ", $dtprop);
         $dtprop['createdRow'] = 'genericCreatedRow';
