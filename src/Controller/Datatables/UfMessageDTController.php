@@ -128,7 +128,7 @@ class UfMessageDTController extends DatatablesController
         $this->setupDatatable($ctlprop);
     }
 
-    public function getList($request, $response, $args)
+    public function DeletegetList($request, $response, $args)
     {
         $this->setSprunje($request, $response, $args);
         $params = $request->getQueryParams();
@@ -154,5 +154,39 @@ class UfMessageDTController extends DatatablesController
         });
 
         return $this->sprunje->toResponse($response);
+    }
+
+    /**
+     * extendSprunje function
+     * Will be overridden in the child classes to extend the sprunje query
+     *
+     * @param [type] $request
+     * @param [type] $response
+     * @param [type] $args
+     * @return void
+     */
+    public function extendSprunje($request, $response, $args)
+    {
+        $params = $request->getQueryParams();
+        if (count($params) > 0) {
+            $args = array_merge($params, $args);
+        }
+        //Debug::debug("Line 115 args array is  ", $args);
+
+        $this->sprunje->extendQuery(function ($query) use ($args) {
+            if (isset($args['user_id'])) {
+                if ($args['user_id'] == 'current') {
+                    $currentUser = $this->ci->currentUser;
+                    $args['user_id'] = $currentUser->id;
+                    //$query->where('status', 'A');
+                }
+                $query->where('user_id', $args['user_id']);
+                //Debug::debug("Line 126 args user id  args 'user_id' - " . $args['user_id'], $args);
+            }
+            if (isset($args['status'])) {
+                $query->where('status', $args['status']);
+            }
+            return $query;
+        });
     }
 }
