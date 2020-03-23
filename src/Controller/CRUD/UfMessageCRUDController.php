@@ -104,7 +104,7 @@ class UfMessageCRUDController extends CRUDController
 
     public function getCRUDPageParams()
     {
-        $params = [];
+        $params = parent::getCRUDPageParams();
         $params['hasgeocode'] = 'N';
         return $params;
     }
