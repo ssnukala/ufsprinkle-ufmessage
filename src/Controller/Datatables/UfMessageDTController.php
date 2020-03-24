@@ -17,6 +17,8 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 class UfMessageDTController extends DatatablesController
 {
     protected $sprunje_name = 'uf_message_sprunje';
+    protected $schema = 'schema://datatable/ufmessage.yaml';
+
     protected $exportable = '*';
 
     public function addTypeFilter($dtprop)
@@ -61,7 +63,6 @@ class UfMessageDTController extends DatatablesController
     {
         $dtprop = [
             'htmlid' => 'ufmessage_dt_1',
-            'schema' => 'schema://datatable/ufmessage.yaml',
             "ajax_url" => "/api/ufmessage/dt",
         ];
 
@@ -74,7 +75,7 @@ class UfMessageDTController extends DatatablesController
         $dtprop['title'] = 'UFMESSAGE.LIST_TITLE';
 
         $dtprop['crud_success_js'] = 'genericDTCRUDSuccess';
-        $dtprop['newrow_template'] = 'partials/newrow.html.twig';
+        $dtprop['templates']['newrow_template'] = 'partials/newrow.html.twig';
 
         $crudctrl = new UfMessageCRUDController($this->ci);
 
@@ -114,10 +115,10 @@ class UfMessageDTController extends DatatablesController
 
     public function setControlBarOptions()
     {
+        $this->schema = 'schema://datatable/ufmessage-control.yaml';
         $ctlprop = [
-            'schema' => 'schema://datatable/ufmessage-control.yaml',
             "ajax_url" => "/api/ufmessage/dt2",
-            'newrow_template' => '',
+            'templates' => ['newrow_template' => ''],
             'tableclass' => 'table-condensed',
             'rowclass' => 'uf_message_row'
         ];
@@ -126,34 +127,6 @@ class UfMessageDTController extends DatatablesController
         ];
 
         $this->setupDatatable($ctlprop);
-    }
-
-    public function DeletegetList($request, $response, $args)
-    {
-        $this->setSprunje($request, $response, $args);
-        $params = $request->getQueryParams();
-        if (count($params) > 0) {
-            $args = array_merge($params, $args);
-        }
-        //Debug::debug("Line 115 args array is  ", $args);
-
-        $this->sprunje->extendQuery(function ($query) use ($args) {
-            if (isset($args['user_id'])) {
-                if ($args['user_id'] == 'current') {
-                    $currentUser = $this->ci->currentUser;
-                    $args['user_id'] = $currentUser->id;
-                    //$query->where('status', 'A');
-                }
-                $query->where('user_id', $args['user_id']);
-                //Debug::debug("Line 126 args user id  args 'user_id' - " . $args['user_id'], $args);
-            }
-            if (isset($args['status'])) {
-                $query->where('status', $args['status']);
-            }
-            return $query;
-        });
-
-        return $this->sprunje->toResponse($response);
     }
 
     /**
