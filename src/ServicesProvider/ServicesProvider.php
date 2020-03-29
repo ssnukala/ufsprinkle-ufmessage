@@ -59,17 +59,20 @@ class ServicesProvider
         $container['ufMessages'] = function ($c) {
             try {
                 $currentUser = $c->currentUser;
+                /*
                 $ufmessages = UfMessage::select('id', 'body', 'message_date')
                     ->where('user_id', $currentUser->id)
                     ->where('status', 'A')->orderBy('message_date', 'DESC')->limit(5)->get();
-
+                */
                 $m_dtctrl = new UfMessageDTController($c);
                 $m_dtctrl->setControlBarOptions();
                 $m_dtarr = $m_dtctrl->getDatatableArray();
-                $retarr = ['data' => $ufmessages->toArray(), 'ufmdt' => $m_dtarr];
+                //$retarr = ['data' => $ufmessages->toArray(), 'ufmdt' => $m_dtarr];
+                $retarr = ['ufmdt' => $m_dtarr];
                 return $retarr;
             } catch (\Exception $e) {
-                return ['data' => [], 'ufmdt' => []];
+                //return ['data' => [], 'ufmdt' => []];
+                return ['ufmdt' => []];
             }
         };
 
