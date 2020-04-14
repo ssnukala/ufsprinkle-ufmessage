@@ -19,7 +19,7 @@ use UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController;
  *
  * @author Srinivas Nukala
  */
-//class CatalogController extends CRUDMultiRowController
+
 class UfMessageCRUDController extends CRUDController
 {
     protected $crud_name = 'UF Message';
@@ -47,7 +47,6 @@ class UfMessageCRUDController extends CRUDController
             'form' => [
                 "id" => $lcmodel . '_create',
                 "source" => $lcmodel,
-                //"field_prefix" => 'msgufm',
                 "type" => 'form',
                 "class" => 'hide-label',
                 "title" => $ucmodel . ".ADD_NEW_" . $ucmodel,
@@ -73,7 +72,6 @@ class UfMessageCRUDController extends CRUDController
             'form' => [
                 "id" => $lcmodel . '_update',
                 "type" => 'form',
-                //"field_prefix" => 'msgupd',
                 "source" => $lcmodel,
                 "class" => 'hide-label',
                 "title" => $ucmodel . ".UPDATE_" . $ucmodel,
@@ -124,7 +122,7 @@ class UfMessageCRUDController extends CRUDController
     {
         /** @var UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
         $classMapper = $this->ci->classMapper;
-        Debug::debug("Line 68 data is  set", $data);
+        //Debug::debug("Line 68 data is  set", $data);
         if (isset($data['user_id'])) {
             $return = $classMapper->staticMethod('uf_message', 'where', 'user_id', $data['user_id'])->get();
         } else if (isset($data['message_id'])) {

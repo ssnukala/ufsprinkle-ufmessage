@@ -14,9 +14,9 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Sprinkle\Datatables\Sprunje\DatatablesSprunje;
 
 /**
- * RoleSprunje
+ * UfMessageSprunje
  *
- * Implements Sprunje for the roles API.
+ * Implements Sprunje for the UfMessage API.
  *
  * @author Srinivas Nukala (https://srinivasnukala.com)
  */

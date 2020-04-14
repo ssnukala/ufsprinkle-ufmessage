@@ -13,7 +13,7 @@ namespace UserFrosting\Sprinkle\UfMessage\ServicesProvider;
 use Dotenv\Dotenv;
 use Dotenv\Exception\InvalidPathException;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use UserFrosting\Sprinkle\UfMessage\Controller\UfMessenger;
 use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;

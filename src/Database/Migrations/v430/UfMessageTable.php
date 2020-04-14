@@ -57,7 +57,7 @@ class UfMessageTable extends Migration
                 $table->engine = 'InnoDB';
                 $table->collation = 'utf8_unicode_ci';
                 $table->charset = 'utf8';
-                $table->foreign('user_id')->references('id')->on('users');
+                //$table->foreign('user_id')->references('id')->on('users');
             });
         }
     }
