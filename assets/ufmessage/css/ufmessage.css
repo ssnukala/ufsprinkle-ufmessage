@@ -29,3 +29,20 @@
 .control-sidebar .crud-datatable {
     padding: inherit !important;
 }
+
+.ufmessage_dt .dt-search {
+    padding-right: 2px;
+}
+
+.ufmessage_dt .dt-pagelength,
+.ufmessage_dt .dt-snexpbtn {
+    padding-left: 0px;
+}
+
+.ufmessage_dt .dt-snexpbtn {
+    float: left !important;
+}
+
+.ufmessage_dt .dt-export-btn {
+    padding: 9px 2px;
+}
