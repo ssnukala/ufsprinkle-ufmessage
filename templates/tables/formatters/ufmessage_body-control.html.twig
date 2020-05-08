@@ -1,10 +1,10 @@
 {% import "forms/macros/crud-edit.html.twig" as crudEdit %}
 {% import "forms/macros/edit-pencil.html.twig" as pencil %}
 {% extends "formatters/dt_crud_formatter.html.twig" %}
-{% set forfield = 'body' %}
+{% set forfield = 'id' %}
 {% block format_body %}
     <div class='uf_message_format'>
-        {row.body}
+        ({row.id}) - {row.body}
         <span class='field_format' data-forfield='rowdata'>
             <span class="rs-conditional" data-forfield='rowdata.status'>
                 <span class='rs-option' data-forfield='rowdata.status' data-value='A'>

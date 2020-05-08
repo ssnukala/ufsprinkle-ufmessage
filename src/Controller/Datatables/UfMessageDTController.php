@@ -120,7 +120,8 @@ class UfMessageDTController extends DatatablesController
             "ajax_url" => "/api/ufmessage/dt2",
             'templates' => ['newrow_template' => ''],
             'tableclass' => 'table-condensed',
-            'rowclass' => 'uf_message_row'
+            'rowclass' => 'uf_message_row',
+            "initial_sort" => [[0, 'desc']]
         ];
         $ctlprop['formatters'] = [
             "tables/formatters/ufmessage_body-control.html.twig"
