@@ -1,8 +1,8 @@
 {
     "bundle": {
-        "js/ufmessageutil": {
+        "js/ufmessage/util": {
             "scripts": [
-                "ufmessage/js/pages/ufmessage-utilities.js"
+                "ufmessage/js/ufmessage-utilities.js"
             ],
             "options": {
                 "result": {
@@ -12,7 +12,7 @@
                 }
             }
         },
-        "css/ufmessage": {
+        "css/ufmessage/styles": {
             "styles": [
                 "ufmessage/css/ufmessage.css"
             ],
