@@ -12,13 +12,15 @@ namespace UserFrosting\Sprinkle\UfMessage\Twig;
 
 use Psr\Container\ContainerInterface;
 use UserFrosting\Support\Repository\Repository as Config;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
 /**
  * Extends Twig functionality for the Account sprinkle.
  *
  * @author Alex Weissman (https://alexanderweissman.com)
  */
-class UfMessageExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class UfMessageExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var ContainerInterface
