@@ -43,7 +43,8 @@ class ServicesProvider
          * @return \UserFrosting\Sprinkle\Core\Mail\Mailer
          */
         $container['ufmessenger'] = function ($c) {
-            $mailer = new UfMessenger($c->config['ufmessenger']);
+            $ufmailer = $c->mailer;
+            $mailer = new UfMessenger($c->config['ufmessenger'], $ufmailer);
             //Debug::debug("Line 44 ServiceProvider config ufmessage is ", $c->config['ufmessenger']);
             // Use UF debug settings to override any service-specific log settings.
 

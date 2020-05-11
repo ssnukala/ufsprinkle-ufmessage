@@ -20,6 +20,7 @@ use UserFrosting\Sprinkle\Core\Facades\Debug;
 use UserFrosting\Sprinkle\UfMessage\Controller\Mail\UfmTwigMailMessage;
 use UserFrosting\Sprinkle\UfMessage\Database\Models\UfMessage;
 use UserFrosting\Sprinkle\Core\Mail\EmailRecipient;
+use UserFrosting\Sprinkle\Core\Mail\Mailer;
 
 /**
  * UfMessenger Class.
@@ -42,9 +43,10 @@ class UfMessenger
      *
      * @throws phpmailerException Wrong mailer config value given.
      */
-    public function __construct($config = [])
+    public function __construct($config = [], Mailer $ufMailer)
     {
         $this->config = $config;
+        $this->ufMailer = $ufMailer;
         //Debug::debug("Line 57 the oauth Config params are ", $config);
     }
 
@@ -137,7 +139,7 @@ class UfMessenger
      *
      * @throws phpmailerException The message could not be sent.
      */
-    public function send(UfmTwigMailMessage $message, $clearRecipients = true)
+    public function send(UfmTwigMailMessage $message, $sendMail = false)
     {
         //Debug::debug("Line 203 UFMessenger initiating message");
         $mesgdata = $this->createMessage($message);
@@ -145,12 +147,13 @@ class UfMessenger
         $ufmesg = new UfMessage($mesgdata);
         $ufmesg->save();
 
-        //$this->phpMailer->send();
-        //Debug::debug("Line 207 UFMessenger After Send Command");
-
-        // Clear out the MailMessage's internal recipient list
-        if ($clearRecipients) {
-            $message->clearRecipients();
+        //$this->ci is not available as this is not a simple controller instance
+        if ($sendMail) {
+            try {
+                $this->ufMailer->send($message);
+            } catch (\Exception $e) {
+                Debug::debug("Line 151 could not send email " . $e->getMessage());
+            }
         }
     }
 
