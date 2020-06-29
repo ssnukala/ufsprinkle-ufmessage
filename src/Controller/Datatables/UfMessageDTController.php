@@ -66,6 +66,9 @@ class UfMessageDTController extends DatatablesController
             "ajax_url" => "/api/ufmessage/dt",
         ];
 
+        $isregadmin = $this->ci->currentUser->isRegAdmin();
+        $dtprop['export_rows'] = $isregadmin ? 'page' : 'none';
+
         $dtprop['filters'] = [];
         $dtprop['formatters'] = [
             "tables/formatters/ufmessage_body.html.twig",
@@ -97,7 +100,7 @@ class UfMessageDTController extends DatatablesController
         $dtprop['filters']['url'] = $dtprop['ajax_url'];
         $dtprop['filters']['title'] = 'Filters';
 
-        $dtprop['export_rows'] = 'page';
+        $dtprop['autoload'] = false;
 
         //Debug::debug("Line 77 dtprops UfMessageDTController ", $dtprop);
         $dtprop['createdRow'] = 'genericCreatedRow';
