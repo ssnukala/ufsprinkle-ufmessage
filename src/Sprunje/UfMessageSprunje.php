@@ -69,7 +69,7 @@ class UfMessageSprunje extends DatatablesSprunje
      * @param [type] $value
      * @return void
      */
-    protected function filterStatus($query, $value)
+    public function filterStatus($query, $value)
     {
         // Split value on separator for OR queries
         $values = explode($this->orSeparator, $value);
