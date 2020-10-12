@@ -21,7 +21,7 @@ use UserFrosting\Sprinkle\UfMessage\Twig\UfMessageExtension;
 use UserFrosting\Sprinkle\UfMessage\Controller\Datatables\UfMessageDTController;
 
 /**
- * UserFrosting APIMail services provider.
+ * UserFrosting UfMessage services provider.
  *
  * Registers core services for Google OAuth Mail for UserFrosting.
  *
